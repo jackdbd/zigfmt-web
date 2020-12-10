@@ -1,2 +1,2 @@
-*.o
-*.h
+src/zig-cache/
+fmt.wasm
