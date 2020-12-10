@@ -10,6 +10,11 @@ fn getJsonObject(allocator: *std.mem.Allocator) !std.json.Value {
     return value;
 }
 
+/// Expose a print function to Javascript.
+/// The extern keyword can be used to link against a variable that is exported from another object.
+/// https://webassembly.github.io/spec/core/syntax/types.html
+extern fn print(i32) void;
+
 /// Write a test JSON file
 /// https://github.com/ziglang/zig/blob/25ec2dbc1e2302d1138749262b588d3e438fcd55/lib/std/json/write_stream.zig#L238
 fn writeJson(allocator: *mem.Allocator, source: []const u8) ![]u8 {
@@ -53,6 +58,7 @@ fn format(allocator: *mem.Allocator, source: []const u8) ![]u8 {
     }
 
     var buf: [1024]u8 = undefined;
+    print(buf.len);
     var fbs = std.io.fixedBufferStream(&buf);
     const out_stream = fbs.writer(); // fbs.outStream() is the same but it's deprecated
 

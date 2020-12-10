@@ -62,7 +62,16 @@ const textArea = document.querySelector("textarea");
 
 fetch("fmt.wasm")
   .then((response) => response.arrayBuffer())
-  .then((bytes) => WebAssembly.instantiate(bytes, {}))
+  .then((bytes) => {
+    const importObject = {
+      env: {
+        print: (result) => {
+          console.log(`From wasm: ${result}`);
+        },
+      },
+    };
+    return WebAssembly.instantiate(bytes, importObject);
+  })
   .then((result) => {
     const fmt = formatZigCode.bind(result.instance.exports);
     btnFmt.disabled = false;
