@@ -1,2 +1,3 @@
+node_modules/
+public/fmt.wasm
 src/zig-cache/
-fmt.wasm

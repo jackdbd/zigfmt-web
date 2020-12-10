@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zig fmt</title>
+    <style>
+        textarea {
+            font-family: monospace;
+        }
+    </style>
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <h1>zig fmt</h1>
+    <ul>
+      <button id="btn-format" disabled>Format</button>
+    </ul>
+    <textarea rows="42" cols="120">
+      const std = @import("std"); pub fn main() void { std.debug.warn("Hello World\n"); }
+    </textarea>
+    <p>Source: <a href="https://github.com/jackdbd/zigfmt-web">https://github.com/jackdbd/zigfmt-web</a></p>
+</body>
+
+</html>

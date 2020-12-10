@@ -1,0 +1,38 @@
+{
+  "name": "zigfmt-web",
+  "version": "1.0.0",
+  "description": "Write zig code in a textarea, format it with WebAssembly.",
+  "main": "index.js",
+  "scripts": {
+    "build:js": "cp src/index.js public",
+    "build:wasm": "zig build-lib -target wasm32-freestanding-musl -O ReleaseSmall src/fmt.zig && mv fmt.wasm public",
+    "build": "npm run build:js && npm run build:wasm",
+    "clean": "rm -f public/index.js && rm -f fmt.wasm",
+    "deploy": "gh-pages --dist public",
+    "format:js": "prettier --write '{,!(node_modules)/}**/*.{js,ts}'",
+    "format:zig": "zig fmt src/*.zig",
+    "format": "npm run format:js && npm run format:zig",
+    "lint:js": "eslint 'src/**/*.{js,ts}' --fix",
+    "predeploy": "npm run clean && npm run format && npm run lint:js && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackdbd/zigfmt-web.git"
+  },
+  "keywords": [
+    "zig",
+    "wasm",
+    "webassembly"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackdbd/zigfmt-web/issues"
+  },
+  "homepage": "https://github.com/jackdbd/zigfmt-web#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "gh-pages": "^3.1.0",
+    "prettier": "^2.2.1"
+  }
+}
